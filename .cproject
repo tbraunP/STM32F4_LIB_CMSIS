@@ -15,22 +15,29 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" description="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.debug.80789035" name="Debug" parent="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.debug">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.debug.80789035" name="Debug" parent="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
 					<folderInfo id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.debug.80789035." name="/" resourcePath="">
-						<toolChain id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.debug.1708731213" name="ARM Linux GCC (Summon)" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.debug">
-							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level.270173994" name="Debug level" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.debugging.level.max" valueType="enumerated"/>
-							<targetPlatform id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.debug.656037989" isAbstract="false" name="Linux Platform" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.debug"/>
-							<builder buildPath="${workspace_loc:/CMSIS/Debug}" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.debug.1730293700" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARM Summon Linux GNU Make builder" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.debug"/>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.debug.240269238" name="ARM Summon Linux GCC Assembler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.debug">
+						<toolChain errorParsers="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.debug.1708731213" name="ARM Linux GCC (Summon)" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.debug">
+							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level.270173994" name="Debug level" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.debugging.level.none" valueType="enumerated"/>
+							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.abi.1218212912" name="Float ABI" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.abi" value="org.eclipse.cdt.cross.arm.gnu.base.option.target.fpu.abi.hard" valueType="enumerated"/>
+							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.unit.205320480" name="FPU Type" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.unit" value="org.eclipse.cdt.cross.arm.gnu.base.option.target.fpu.unit.fpv4spd16" valueType="enumerated"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.GNU_ELF" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.debug.656037989" isAbstract="false" name="Linux Platform" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.debug"/>
+							<builder buildPath="${workspace_loc:/CMSIS/Debug}" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.debug.1730293700" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARM Summon Linux GNU Make builder" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.debug"/>
+							<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.debug.240269238" name="ARM Summon Linux GCC Assembler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.debug">
+								<option id="org.eclipse.cdt.cross.arm.gnu.assembler.option.include.paths.1084138386" superClass="org.eclipse.cdt.cross.arm.gnu.assembler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
+								</option>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.summon.linux.assembler.base.input.352609367" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.assembler.base.input"/>
 							</tool>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.debug.1962790139" name="ARM Summon Linux GCC C Compiler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.debug">
-								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level.750584972" name="Optimization level" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.optimization.level.none" valueType="enumerated"/>
+							<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.debug.1962790139" name="ARM Summon Linux GCC C Compiler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.debug">
+								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level.750584972" name="Optimization level" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.optimization.level.size" valueType="enumerated"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths.1894122483" name="Include paths (-I)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def.354098716" name="Defined symbols (-D)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="HSE_VALUE=8000000"/>
+									<listOptionValue builtIn="false" value="__FPU_PRESENT=1"/>
+									<listOptionValue builtIn="false" value="__FPU_USED=1"/>
 								</option>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.compiler.base.input.1774838477" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.compiler.base.input"/>
 							</tool>
@@ -39,7 +46,7 @@
 							</tool>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.linker.base.928540007" name="ARM Summon Linux GCC C Linker" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.linker.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.cpp.linker.base.955979407" name="ARM Summon Linux GCC C++ Linker" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.cpp.linker.base"/>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.debug.148773359" name="ARM Summon Linux GCC Archiver" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.debug"/>
+							<tool errorParsers="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.debug.148773359" name="ARM Summon Linux GCC Archiver" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.debug"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.createflash.base.1686225250" name="ARM Summon Linux GNU Create Flash Image" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.createflash.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.createlisting.base.757266230" name="ARM Summon Linux GNU Create Listing" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.createlisting.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.printsize.base.1165096833" name="ARM Summon Linux GNU Print Size" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.printsize.base"/>
@@ -67,17 +74,30 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" description="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.release.402373000" name="Release" parent="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.release">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.cross.arm.gnu.buildArtefactType.staticLib" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.release.402373000" name="Release" parent="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.release" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
 					<folderInfo id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.release.402373000." name="/" resourcePath="">
-						<toolChain id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.release.969564775" name="ARM Linux GCC (Summon)" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.release">
+						<toolChain errorParsers="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.release.969564775" name="ARM Linux GCC (Summon)" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.toolchain.release">
 							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level.1406153680" name="Debug level" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.debugging.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.debugging.level.none" valueType="enumerated"/>
-							<targetPlatform id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.release.943267424" isAbstract="false" name="Linux Platform" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.release"/>
-							<builder buildPath="${workspace_loc:/CMSIS/Release}" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.release.638415875" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARM Summon Linux GNU Make builder" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.release"/>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.release.1351944218" name="ARM Summon Linux GCC Assembler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.release">
+							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.abi.1609652487" name="Float ABI" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.abi" value="org.eclipse.cdt.cross.arm.gnu.base.option.target.fpu.abi.hard" valueType="enumerated"/>
+							<option id="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.unit.1129194671" name="FPU Type" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.option.target.fpu.unit" value="org.eclipse.cdt.cross.arm.gnu.base.option.target.fpu.unit.fpv4spd16" valueType="enumerated"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.GNU_ELF" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.release.943267424" isAbstract="false" name="Linux Platform" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.platform.release"/>
+							<builder buildPath="${workspace_loc:/CMSIS/Release}" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.release.638415875" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARM Summon Linux GNU Make builder" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.builder.release"/>
+							<tool command="arm-none-eabi-gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.release.1351944218" name="ARM Summon Linux GCC Assembler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.assembler.release">
+								<option id="org.eclipse.cdt.cross.arm.gnu.assembler.option.include.paths.617667067" superClass="org.eclipse.cdt.cross.arm.gnu.assembler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
+								</option>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.summon.linux.assembler.base.input.1676630083" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.assembler.base.input"/>
 							</tool>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.release.744636593" name="ARM Summon Linux GCC C Compiler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.release">
+							<tool command="arm-none-eabi-gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.release.744636593" name="ARM Summon Linux GCC C Compiler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.c.compiler.release">
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level.442450559" name="Optimization level" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.optimization.level.size" valueType="enumerated"/>
+								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def.1772920351" name="Defined symbols (-D)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="HSE_VALUE=8000000"/>
+									<listOptionValue builtIn="false" value="__FPU_PRESENT=1"/>
+									<listOptionValue builtIn="false" value="__FPU_USED=1"/>
+								</option>
+								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths.105365386" name="Include paths (-I)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
+								</option>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.compiler.base.input.285711657" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.compiler.base.input"/>
 							</tool>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.cpp.compiler.release.700650247" name="ARM Summon Linux GCC C++ Compiler" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.cpp.compiler.release">
@@ -85,7 +105,7 @@
 							</tool>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.linker.base.768048471" name="ARM Summon Linux GCC C Linker" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.c.linker.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.cpp.linker.base.100734657" name="ARM Summon Linux GCC C++ Linker" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.cpp.linker.base"/>
-							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.release.612422401" name="ARM Summon Linux GCC Archiver" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.release"/>
+							<tool command="arm-none-eabi-ar" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.release.612422401" name="ARM Summon Linux GCC Archiver" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.lib.archiver.release"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.createflash.base.738872722" name="ARM Summon Linux GNU Create Flash Image" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.createflash.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.createlisting.base.739136996" name="ARM Summon Linux GNU Create Listing" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.createlisting.base"/>
 							<tool id="org.eclipse.cdt.cross.arm.gnu.summon.linux.printsize.base.1825352175" name="ARM Summon Linux GNU Print Size" superClass="org.eclipse.cdt.cross.arm.gnu.summon.linux.printsize.base"/>
