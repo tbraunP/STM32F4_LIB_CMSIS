@@ -314,6 +314,7 @@ VectorTableEntry const g_pfnVectors[] = {
 /*..........................................................................*/
 void Reset_Handler(void) {
 	extern int main(void);
+	extern void SystemInit(void);
 	extern int __libc_init_array(void);
 	extern unsigned __data_start;
 	/* start of .data in the linker script */
@@ -335,6 +336,10 @@ void Reset_Handler(void) {
 	for (dst = &__bss_start__; dst < &__bss_end__; ++dst) {
 		*dst = 0;
 	}
+
+	/* configure SystemClocks */
+	SystemInit();
+
 	/* call all static construcors in C++ (harmless in C programs) */
 	__libc_init_array();
 	main();
@@ -345,15 +350,18 @@ void Reset_Handler(void) {
 
 typedef void (*Initfunction_t)(void);
 void _init(void) {
-	extern unsigned __init_array_start;
-	extern unsigned __init_array_end;
-
-	unsigned *dst;
-
-	/* execute constructors */
-	for (dst = &__init_array_start; dst < &__init_array_end; ++dst) {
-		((Initfunction_t) dst)();
-	}
+	asm volatile (
+	"		ldr		r3, =__ctors_start__"   "\n\t" // load adress of __ctors_start__ into r0
+	"		ldr		r4, =__ctors_end__"		"\n\t"
+	"		subs	r4, r4, r3		"	    "\n\t" // Length of ctors section
+	"		beq		exit_init		"	    "\n\t" // Skip if no constructors
+	"ctors_loop:					"		"\n\t"
+	"		ldr		r0, [r3], #4	"		"\n\t" // Load next constructor address
+	"		blx		r0				"		"\n\t" // Call constructor
+	"		subs	r4, r4, #4		"		"\n\t" // Decrement counter
+	"		bgt		ctors_loop		"		"\n\t" // Repeat until done
+	"exit_init: "
+	:  :  : "r0", "r3", "r4");
 }
 
 /*..........................................................................*/
