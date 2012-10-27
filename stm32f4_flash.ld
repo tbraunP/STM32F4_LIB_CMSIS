@@ -35,8 +35,8 @@ SECTIONS {
 		*(.rodata)							/* .rodata sections (constants, strings, etc.) */
 		*(.rodata*)							/* .rodata* sections (constants, strings, etc.) */
 
-		KEEPKEEP(*(.init))
-		(*(.fini))
+		KEEP(*(.init))
+		KEEP(*(.fini))
 		. = ALIGN(4);
 		_etext = .;							/* global symbols at end of code */
 	} >FLASH

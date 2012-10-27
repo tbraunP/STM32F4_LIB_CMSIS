@@ -105,7 +105,6 @@ void __attribute__((weak)) Spurious_Handler(void);
  * weak aliases for each Exception handler to the Spurious_Handler.
  * Any function with the same name will override these definitions.
  */
-#pragma weak  Reset_Handler = Spurious_Handler
 #pragma weak  NMI_Handler = Spurious_Handler
 #pragma weak  HardFault_Handler = Spurious_Handler
 #pragma weak  MemManage_Handler = Spurious_Handler
