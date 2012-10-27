@@ -1,11 +1,16 @@
 /*
  *  Linker script for STM32F407VG Device with  1024KByte FLASH, 128KByte RAM
  */
-OUTPUT_FORMAT("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
-OUTPUT_ARCH(arm)
 
-/* entry Point */
+/* Entry Point */
 ENTRY(Reset_Handler)
+
+/* Highest address of the user mode stack */
+_estack = 0x20020000;    /* end of 128K RAM */
+
+/* Generate a link error if heap and stack don't fit into RAM */
+_Min_Heap_Size = 0;      /* required amount of heap  */
+_Min_Stack_Size = 0x400; /* required amount of stack */
 
 /* Specify the memory areas */
 MEMORY
@@ -16,41 +21,49 @@ MEMORY
   CCMRAM (rw)     : ORIGIN = 0x10000000, LENGTH = 64K
 }
 
-/* The size of the stack used by the application. NOTE: you need to adjust*/
-STACK_SIZE = 1024;
-/* The size of the heap used by the application. NOTE: you need to adjust */
-HEAP_SIZE = 10*1024;
+/* Define output sections */
+SECTIONS
+{
+  /* The startup code goes first into FLASH */
+  .isr_vector :
+  {
+    . = ALIGN(4);
+    KEEP(*(.isr_vector)) /* Startup code */
+    . = ALIGN(4);
+  } >FLASH
 
-SECTIONS {
-	.isr_vector : { 						/* the vector table goes FIRST into FLASH */
-		KEEP(*(.isr_vector)) 				/* vector table */
-		. = ALIGN(4);
-	} >FLASH
+  /* The program code and other data goes into FLASH */
+  .text :
+  {
+    . = ALIGN(4);
+    *(.text)           /* .text sections (code) */
+    *(.text*)          /* .text* sections (code) */
 
-	/* code and constants */
-	.text : {
-		. = ALIGN(4);
-		*(.text)							/* .text sections (code) */
-		*(.text*)							/* .text* sections (code) */
-		*(.rodata)							/* .rodata sections (constants, strings, etc.) */
-		*(.rodata*)							/* .rodata* sections (constants, strings, etc.) */
+	 /* KEEP (libSTM32_CPP.a (.syscall_section))   */
 
-		KEEP(*(.init))
-		KEEP(*(.fini))
-		
-		/* support for c++, see http://tech.munts.com/MCU/Frameworks/ARM/stm32f4/stm32f407vg.lld*/  
-    	. = ALIGN(4);
-	    __ctors_start__ = .;
-    	KEEP(*(.init_array));  		/* C++ constructors */
-    	KEEP(*(.ctors));					/* C++ constructors */
-    	__ctors_end__ = .;
-		
-		. = ALIGN(4);
-		_etext = .;							/* global symbols at end of code */
-	} >FLASH
+	 *(.rodata)         /* .rodata sections (constants, strings, etc.) */
+    *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
+    *(.glue_7)         /* glue arm to thumb code */
+    *(.glue_7t)        /* glue thumb to arm code */
+    *(.eh_frame)
 
 
- 	/* C++ exception unwinding stuff--needed by some toolchains */
+    KEEP (*(.init))
+    KEEP (*(.fini))
+
+    /* support for c++, see http://tech.munts.com/MCU/Frameworks/ARM/stm32f4/stm32f407vg.lld*/  
+    . = ALIGN(4);
+    __ctors_start__ = .;
+    KEEP(*(.init_array));  		/* C++ constructors */
+    KEEP(*(.ctors));					/* C++ constructors */
+    __ctors_end__ = .;
+
+
+    . = ALIGN(4);
+    _etext = .;        /* define a global symbols at end of code */
+  } >FLASH
+
+  /* C++ exception unwinding stuff--needed by some toolchains */
    .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
     .ARM : {
     __exidx_start = .;
@@ -58,87 +71,90 @@ SECTIONS {
       __exidx_end = .;
     } >FLASH
 
-	.preinit_array : {
-		PROVIDE(__preinit_array_start = .);
-		KEEP (*(.preinit_array*))
-		PROVIDE(__preinit_array_end = .);
-	} >FLASH
+  .preinit_array     :
+  {
+    PROVIDE_HIDDEN (__preinit_array_start = .);
+    KEEP (*(.preinit_array*))
+    PROVIDE_HIDDEN (__preinit_array_end = .);
+  } >FLASH
+  .init_array :
+  {
+    PROVIDE_HIDDEN (__init_array_start = .);
+    KEEP (*(SORT(.init_array.*)))
+    KEEP (*(.init_array*))
+    PROVIDE_HIDDEN (__init_array_end = .);
+  } >FLASH
+  .fini_array :
+  {
+    PROVIDE_HIDDEN (__fini_array_start = .);
+    KEEP (*(SORT(.fini_array.*)))
+    KEEP (*(.fini_array*))
+    PROVIDE_HIDDEN (__fini_array_end = .);
+  } >FLASH
 
-/* The .preinint_array and .inint_array sections hold arrays of function pointers that are
-	called by the startup code to initialize the program. In C++ programs these hold pointers to the static
-	constructors that are called by __libc_init_array() before main(). */
-	.init_array : {
-		PROVIDE(__init_array_start = .);
-		KEEP (*(SORT(.init_array.*)))
-		KEEP (*(.init_array*))
-		PROVIDE(__init_array_end = .);
-	} >FLASH
-	
+  /* used by the startup to initialize data */
+  _sidata = LOADADDR(.data);
 
-/* The .fini_array section holds an array of function pointers that are called before terminating the
-	program. In C++ programs this array holds pointers to the static destructors.*/
-	.fini_array : {
-		PROVIDE(__fini_array_start = .);
-		KEEP (*(.fini_array*))
-		KEEP (*(SORT(.fini_array.*)))
-		PROVIDE(__fini_array_end = .);
-	} >FLASH
+  /* Initialized data sections goes into RAM, load LMA copy after code */
+  .data : 
+  {
+    . = ALIGN(4);
+    _sdata = .;        /* create a global symbol at data start */
+    *(.data)           /* .data sections */
+    *(.data*)          /* .data* sections */
 
-/* The .data section contains initialized data.
-	The .data section is located in RAM, but is loaded to ROM and copied to RAM during startup. */
-	.data : {
-		__data_load = LOADADDR (.data);
-		_sidata = LOADADDR(.data);
-		_sdata = .;
-		__data_start = .;
-		*(.data)							/* .data sections */
-		*(.data*)							/* .data* sections */
-		. = ALIGN(4);
-		__data_end__ = .;
-		_edata = __data_end__;
-	} >RAM AT>FLASH
+    . = ALIGN(4);
+    _edata = .;        /* define a global symbol at data end */
+  } >RAM AT> FLASH
+  
+  /* Uninitialized data section */
+  . = ALIGN(4);
+  .bss :
+  {
+    /* This is used by the startup in order to initialize the .bss secion */
+    _sbss = .;         /* define a global symbol at bss start */
+    __bss_start__ = _sbss;
+    *(.bss)
+    *(.bss*)
+    *(COMMON)
 
- 	/* Uninitialized data section */
-	.bss : {
-		. = ALIGN(4);
-		__bss_start__ = . ;
-		_sbss = .;
-		*(.bss)
-		*(.bss*)
-		*(COMMON)
-		. = ALIGN(4);
-		_ebss = .;							/* define a global symbol at bss end */
-		__bss_end__ = .;
-	} >RAM
+    . = ALIGN(4);
+    _ebss = .;         /* define a global symbol at bss end */
+    __bss_end__ = _ebss;
+    
+    /* provide heap of 12k */
+    PROVIDE(__heap_start__ = .);
+    PROVIDE(__heap_end__ = ALIGN( . + 24576 ,8));
+  } >RAM
 
-	PROVIDE( end = _ebss );
-	PROVIDE( _end = _ebss );
-	PROVIDE( __end__ = _ebss );
+  /* User_heap_stack section, used to check that there is enough RAM left */
+  ._user_heap_stack :
+  {
+    . = ALIGN(4);
+    PROVIDE ( end = . );
+    PROVIDE ( _end = . );
+    . = . + _Min_Heap_Size;
+    . = . + _Min_Stack_Size;
+    . = ALIGN(4);
+  } >RAM
 
-	/* Heap */
-	.heap : {
-		__heap_start__ = . ;
-		. = . + HEAP_SIZE;
-		. = ALIGN(8);
-		__heap_end__ = . ;
-	} >RAM
+  /* MEMORY_bank1 section, code must be located here explicitly            */
+  /* Example: extern int foo(void) __attribute__ ((section (".mb1text"))); */
+  .memory_b1_text :
+  {
+    *(.mb1text)        /* .mb1text sections (code) */
+    *(.mb1text*)       /* .mb1text* sections (code)  */
+    *(.mb1rodata)      /* read-only data (constants) */
+    *(.mb1rodata*)
+  } >MEMORY_B1
 
-	/* Stack */
-	.stack : {
-		__stack_start__ = . ;
-		. = . + STACK_SIZE;
-		. = ALIGN(4);
-		__c_stack_top__ = . ;
-		__stack_end__ = . ;
-		_estack = .;
-	} >RAM
+  /* Remove information from the standard libraries */
+  /DISCARD/ :
+  {
+    libc.a ( * )
+    libm.a ( * )
+    libgcc.a ( * )
+  }
 
-	/* Remove information from the standard libraries */
-	/DISCARD/ : {
-		libc.a ( * )
-		libm.a ( * )
-		libgcc.a ( * )
-	}
-	
-	.ARM.attributes 0 : { *(.ARM.attributes) }
+  .ARM.attributes 0 : { *(.ARM.attributes) }
 }
