@@ -118,8 +118,8 @@ LoopForever:
 _init:
 call_ctors:
 		stmfd	sp!, {r3, r4, lr}
-		ldr		r3, =__ctors_start__   // load adress of __ctors_start__ into r0
-		ldr		r4, =__ctors_end__
+		ldr		r3, =__init_array_start   // load adress of __ctors_start__ into r0
+		ldr		r4, =__init_array_end
 		subs	r4, r4, r3			// Length of ctors section
 		beq		exit_init			// Skip if no constructors
 
