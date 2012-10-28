@@ -204,12 +204,12 @@ typedef union {
 	void *pointer;
 } VectorTableEntry;
 
-extern unsigned __c_stack_top__;
+extern unsigned _estack;
 
 /*..........................................................................*/
 __attribute__ ((section(".isr_vector")))
 VectorTableEntry const g_pfnVectors[] = {
-		{ .pointer = &__c_stack_top__ },			/* initial stack pointer */
+		{ .pointer = &_estack },			/* initial stack pointer */
 		{ .handler = &Reset_Handler },				/* Reset Handler */
 		{ .handler = &NMI_Handler      },
 		{ .handler = &HardFault_Handler      },
@@ -316,11 +316,11 @@ void Reset_Handler(void) {
 	extern int main(void);
 	extern void SystemInit(void);
 	extern int __libc_init_array(void);
-	extern unsigned __data_start;
+	extern unsigned _sdata;
 	/* start of .data in the linker script */
-	extern unsigned __data_end__;
+	extern unsigned _edata;
 	/* end of .data in the linker script */
-	extern unsigned const __data_load; /* initialization values for .data */
+	extern unsigned const _sidata; /* initialization values for .data */
 	extern unsigned __bss_start__;
 	/* start of .bss in the linker script */
  	 extern unsigned __bss_end__;
@@ -328,8 +328,8 @@ void Reset_Handler(void) {
  	unsigned const *src;
 	unsigned *dst;
 	/* copy the data segment initializers from flash to RAM... */
-	src = &__data_load;
-	for (dst = &__data_start; dst < &__data_end__; ++dst, ++src) {
+	src = &_sidata;
+	for (dst = &_sdata; dst < &_edata; ++dst, ++src) {
 		*dst = *src;
 	}
 	/* zero fill the .bss segment... */
@@ -351,8 +351,8 @@ void Reset_Handler(void) {
 typedef void (*Initfunction_t)(void);
 void _init(void) {
 	asm volatile (
-	"		ldr		r3, =__ctors_start__"   "\n\t" // load adress of __ctors_start__ into r0
-	"		ldr		r4, =__ctors_end__"		"\n\t"
+	"		ldr		r3, =__init_array_start"   "\n\t" // load adress of __ctors_start__ into r0
+	"		ldr		r4, =__init_array_end"		"\n\t"
 	"		subs	r4, r4, r3		"	    "\n\t" // Length of ctors section
 	"		beq		exit_init		"	    "\n\t" // Skip if no constructors
 	"ctors_loop:					"		"\n\t"
