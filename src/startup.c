@@ -105,16 +105,16 @@ void __attribute__((weak)) Spurious_Handler(void);
  * weak aliases for each Exception handler to the Spurious_Handler.
  * Any function with the same name will override these definitions.
  */
-#pragma weak  NMI_Handler = Spurious_Handler
-#pragma weak  HardFault_Handler = Spurious_Handler
-#pragma weak  MemManage_Handler = Spurious_Handler
-#pragma weak  BusFault_Handler = Spurious_Handler
-#pragma weak  UsageFault_Handler = Spurious_Handler
-#pragma weak  SVC_Handler = Spurious_Handler
-#pragma weak  DebugMon_Handler = Spurious_Handler
-#pragma weak  PendSV_Handler = Spurious_Handler
-#pragma weak  SysTick_Handler = Spurious_Handler
-#pragma weak     WWDG_IRQHandler               = Spurious_Handler
+#pragma weak     NMI_Handler                        = Spurious_Handler
+#pragma weak     HardFault_Handler                  = Spurious_Handler
+#pragma weak     MemManage_Handler                  = Spurious_Handler
+#pragma weak     BusFault_Handler                   = Spurious_Handler
+#pragma weak     UsageFault_Handler                 = Spurious_Handler
+#pragma weak     SVC_Handler                        = Spurious_Handler
+#pragma weak     DebugMon_Handler                   = Spurious_Handler
+#pragma weak     PendSV_Handler                     = Spurious_Handler
+#pragma weak     SysTick_Handler                    = Spurious_Handler
+#pragma weak     WWDG_IRQHandler                    = Spurious_Handler
 #pragma weak     PVD_IRQHandler                     = Spurious_Handler
 #pragma weak     TAMP_STAMP_IRQHandler              = Spurious_Handler
 #pragma weak     RTC_WKUP_IRQHandler                = Spurious_Handler
