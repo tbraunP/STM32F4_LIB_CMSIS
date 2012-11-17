@@ -316,6 +316,7 @@ void Reset_Handler(void) {
 	extern int main(void);
 	extern void SystemInit(void);
 	extern int __libc_init_array(void);
+	
 	extern unsigned _sdata;
 	/* start of .data in the linker script */
 	extern unsigned _edata;
