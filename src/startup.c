@@ -4,6 +4,8 @@
  *  Created on: 28.10.2012
  *      Author: pyro
  */
+#include "stm32f4xx.h"
+
 void __attribute__((weak)) Reset_Handler(void);
 void __attribute__((weak)) NMI_Handler(void);
 void __attribute__((weak)) HardFault_Handler(void);
@@ -340,6 +342,9 @@ void Reset_Handler(void) {
 
 	/* configure SystemClocks */
 	SystemInit();
+
+	// Enable Usage, Bus and memory fault handler
+	SCB->SHCSR |= SCB_SHCSR_USGFAULTENA_Msk | SCB_SHCSR_BUSFAULTENA_Msk | SCB_SHCSR_MEMFAULTENA_Msk;
 
 	/* call all static construcors in C++ (harmless in C programs) */
 	__libc_init_array();
