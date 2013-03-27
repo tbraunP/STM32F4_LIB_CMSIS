@@ -36,13 +36,18 @@ SECTIONS {
 		*(.rodata*)							/* .rodata* sections (constants, strings, etc.) */
 
 		KEEP(*(.init))
+		_fini = .;
 		KEEP(*(.fini))
+		
 		
 		/* support for c++, see http://tech.munts.com/MCU/Frameworks/ARM/stm32f4/stm32f407vg.lld*/  
     	. = ALIGN(4);
 	    __ctors_start__ = .;
+	    KEEP (*crtbegin.o(.ctors))
+    	KEEP (*crtbegin?.o(.ctors))
+    	KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
     	KEEP(*(.init_array));  		/* C++ constructors */
-    	KEEP(*(.ctors));					/* C++ constructors */
+    	KEEP(*(.ctors));			/* C++ constructors */
     	__ctors_end__ = .;
 		
 		. = ALIGN(4);
