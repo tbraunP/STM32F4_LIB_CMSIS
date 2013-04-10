@@ -16,11 +16,14 @@ SET(CMAKE_AR arm-none-eabi-ar)
 SET(CMAKE_RANLIB arm-none-eabi-ranlib)
 
 # Set compiler and linker options
-SET(COMMON_FLAGS "-mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0")
+SET(COMMON_FLAGS "-O0 -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -ffunction-sections -fdata-sections -fno-common -fmessage-length=0")
 SET(CMAKE_CXX_FLAGS "${COMMON_FLAGS}  -std=gnu++0x")
 SET(CMAKE_C_FLAGS "${COMMON_FLAGS} -std=gnu99")
 SET(CMAKE_EXE_LINKER_FLAGS "-Wl,-gc-sections ")
 
+# Debug Options
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS}  -g")
+SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -g")
 
 include_directories ("inc")
 add_library(CMSIS src/startup.c)
