@@ -26,5 +26,5 @@ SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS}  -g")
 SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -g")
 
 include_directories ("inc")
-add_library(CMSIS src/startup.c)
+add_library(STM32F4_LIB_CMSIS src/startup.c)
 
