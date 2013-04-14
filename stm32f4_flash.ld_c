@@ -16,6 +16,9 @@ MEMORY
   CCMRAM (rw)     : ORIGIN = 0x10000000, LENGTH = 64K
 }
 
+/* Highest address for stack start */
+_estack = 0x20020000;
+
 /* The size of the stack used by the application. NOTE: you need to adjust*/
 STACK_SIZE = 1024;
 /* The size of the heap used by the application. NOTE: you need to adjust */
@@ -138,7 +141,6 @@ SECTIONS {
 		. = ALIGN(4);
 		__c_stack_top__ = . ;
 		__stack_end__ = . ;
-		_estack = .;
 	} >RAM
 
 	/* Remove information from the standard libraries */
