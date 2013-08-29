@@ -45,12 +45,15 @@ SECTIONS {
 
 
  	/* C++ exception unwinding stuff--needed by some toolchains */
-   .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
-    .ARM : {
-    __exidx_start = .;
-      *(.ARM.exidx*)
-      __exidx_end = .;
-    } >FLASH
+	.ARM.extab   : { 
+	    *(.ARM.extab* .gnu.linkonce.armextab.*) 
+	} >FLASH
+	
+	.ARM : {
+	    __exidx_start = .;
+	    *(.ARM.exidx*)
+	    __exidx_end = .;
+	} >FLASH
 
 	.preinit_array : {
 		PROVIDE(__preinit_array_start = .);
@@ -58,7 +61,7 @@ SECTIONS {
 		PROVIDE(__preinit_array_end = .);
 	} >FLASH
 
-/* The .preinint_array and .inint_array sections hold arrays of function pointers that are
+	/* The .preinint_array and .inint_array sections hold arrays of function pointers that are
 	called by the startup code to initialize the program. In C++ programs these hold pointers to the static
 	constructors that are called by __libc_init_array() before main(). */
 	.init_array : {
@@ -83,7 +86,7 @@ SECTIONS {
 	} >FLASH
 	
 
-/* The .fini_array section holds an array of function pointers that are called before terminating the
+	 /* The .fini_array section holds an array of function pointers that are called before terminating the
 	program. In C++ programs this array holds pointers to the static destructors.*/
 	.fini_array : {
 		PROVIDE(__fini_array_start = .);
@@ -92,7 +95,7 @@ SECTIONS {
 		PROVIDE(__fini_array_end = .);
 	} >FLASH
 
-/* The .data section contains initialized data.
+	/* The .data section contains initialized data.
 	The .data section is located in RAM, but is loaded to ROM and copied to RAM during startup. */
 	.data : {
 		__data_load = LOADADDR (.data);
