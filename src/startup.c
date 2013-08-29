@@ -354,7 +354,7 @@ void Reset_Handler(void) {
 	}
 }
 
-void _init(void) {
+void _initold(void) {
 	asm volatile (
 	"		ldr		r3, =__init_array_start"   "\n\t" // load adress of __ctors_start__ into r0
 	"		ldr		r4, =__init_array_end"		"\n\t"
